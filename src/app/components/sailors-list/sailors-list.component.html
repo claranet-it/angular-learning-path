@@ -1,0 +1,8 @@
+@for (sailor of sailorService.sailors(); track sailor.id) {
+  <p>{{ sailor.name }} {{ sailor.surname }}</p>
+} @empty {  
+  No Sailors found
+}
+
+
+    
