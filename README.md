@@ -16,3 +16,10 @@ Once the server is running, open your browser and navigate to `http://localhost:
 
 - base component `sailors-list` to show the list of Sailors
 - service `sailor.service.ts`
+
+### Chapter 2
+
+- `login` component, reactive form
+- `fake-auth.service.ts`
+- angular router with guard protection
+- Inject-based dependency injection with `inject()`
