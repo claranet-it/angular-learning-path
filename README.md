@@ -22,4 +22,5 @@ Once the server is running, open your browser and navigate to `http://localhost:
 - `login` component, reactive form
 - `fake-auth.service.ts`
 - angular router with guard protection
-- Inject-based dependency injection with `inject()`
+- inject-based dependency injection with `inject()`
+- pass data to component with `@Input`

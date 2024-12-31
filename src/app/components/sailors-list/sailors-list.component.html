@@ -1,8 +1,7 @@
-@for (sailor of sailorService.sailors(); track sailor.id) {
-  <p>{{ sailor.name }} {{ sailor.surname }}</p>
-} @empty {  
-  No Sailors found
-}
-
-
-    
+<div class="sailors-list-container">
+  @for (sailor of sailorService.sailors(); track sailor.id) {
+    <app-sailor-card [sailor]="sailor"></app-sailor-card>
+  } @empty {
+    No Sailors found
+  }
+</div>

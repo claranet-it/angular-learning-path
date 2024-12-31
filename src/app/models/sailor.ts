@@ -3,4 +3,5 @@ export interface Sailor {
   name: string;
   surname: string;
   email: string;
+  dateOfBirth: string;
 }
