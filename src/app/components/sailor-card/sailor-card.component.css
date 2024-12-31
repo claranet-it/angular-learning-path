@@ -39,3 +39,21 @@
   color: #555;
   text-align: right;
 }
+
+.sailor-card-actions {
+  margin-top: 15px;
+  text-align: end;
+}
+
+.button-delete {
+  border: 1px solid red;
+  background-color: transparent;
+  padding: .5rem;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.button-delete:hover {
+  background-color: #eee;
+}

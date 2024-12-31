@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { SailorService } from '../../services/sailor.service';
 import { SailorCardComponent } from '../sailor-card/sailor-card.component';
 
@@ -9,6 +9,5 @@ import { SailorCardComponent } from '../sailor-card/sailor-card.component';
   styleUrl: './sailors-list.component.css'
 })
 export class SailorsListComponent {
-
-  constructor(public sailorService: SailorService) {}
+  sailorService = inject(SailorService)
 }

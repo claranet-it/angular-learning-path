@@ -1,5 +1,5 @@
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DatePipe } from '@angular/common';
-import { Component, Input } from '@angular/core';
 import { Sailor } from '../../models/sailor';
 
 @Component({
@@ -10,4 +10,5 @@ import { Sailor } from '../../models/sailor';
 })
 export class SailorCardComponent {
   @Input() sailor!: Sailor;
+  @Output() delete = new EventEmitter();
 }

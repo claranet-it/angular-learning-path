@@ -10,4 +10,7 @@
       <span class="value">{{ sailor.dateOfBirth | date: 'dd/MM/yyyy' }}</span>
     </div>
   </div>
+  <div class="sailor-card-actions">
+    <button class="button-delete" (click)="delete.emit(sailor.id)">Delete</button>
+</div>
 </div>

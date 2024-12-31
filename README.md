@@ -28,4 +28,6 @@ Once the server is running, open your browser and navigate to `http://localhost:
 ### Chapter 3
 
 - `add-sailor` component, reactive form validation
+- delete sailor
+- event emitter with `@Output()`
 - signals `update()`

@@ -23,11 +23,15 @@ export const initialSailors: Sailor[] = [
 })
 export class SailorService {
   sailors = signal<Sailor[]>(initialSailors)
-  maxId = computed(() => Math.max(...this.sailors().map(sailor => sailor.id)));
+  maxId = computed(() => this.sailors().length ? Math.max(...this.sailors().map(sailor => sailor.id)) : 0);
 
   addSailor(sailor: Omit<Sailor, 'id'>) {
     const id = this.maxId() + 1;
     const newSailor: Sailor = { id, ...sailor };
     this.sailors.update((sailors) => [...sailors, newSailor]);
+  }
+
+  deleteSailor(id: number) {
+    this.sailors.update((sailors) => sailors.filter((item) => item.id !== id));
   }
 }
