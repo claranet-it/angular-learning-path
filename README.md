@@ -24,3 +24,8 @@ Once the server is running, open your browser and navigate to `http://localhost:
 - angular router with guard protection
 - inject-based dependency injection with `inject()`
 - pass data to component with `@Input`
+
+### Chapter 3
+
+- `add-sailor` component, reactive form validation
+- signals `update()`

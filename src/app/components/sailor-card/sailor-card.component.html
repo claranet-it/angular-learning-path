@@ -1,5 +1,5 @@
 <div class="sailor-card">
-  <div class="sailor-card-title">{{ sailor.name }} {{ sailor.surname }}</div>
+  <div class="sailor-card-title">{{ sailor.id }} - {{ sailor.name }} {{ sailor.surname }}</div>
   <div class="label-value-list">
     <div class="label-value-item">
       <span class="label">Email:</span>
@@ -7,7 +7,7 @@
     </div>
     <div class="label-value-item">
       <span class="label">Date of Birth:</span>
-      <span class="value">{{ sailor.dateOfBirth }}</span>
+      <span class="value">{{ sailor.dateOfBirth | date: 'dd/MM/yyyy' }}</span>
     </div>
   </div>
 </div>
