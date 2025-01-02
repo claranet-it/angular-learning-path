@@ -34,5 +34,7 @@ Once the server is running, open your browser and navigate to `http://localhost:
 
 ### Chapter 4
 
-- `sailor-detail`component
+- `sailor-detail` and `sailor-comments` components
 - use of `ActivatedRoute` service
+- deferred loading with `@defer`
+- angular signal inputs: `input()` and `effect()`

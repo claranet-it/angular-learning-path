@@ -1,6 +1,32 @@
 <a href="javascript:void(0);" [routerLink]="['/home']">Back</a>
+<h1>Sailor Detail</h1>
 @if (sailor) {
-  <app-sailor-card [sailor]="sailor"></app-sailor-card>
+  <div style="height: 1000px;">
+    <h2>{{ sailor.name }} {{ sailor.surname }}</h2>
+    <dl>
+      <dt>Avatar</dt>
+      <img width="300" height="300" priority ngSrc="https://picsum.photos/300/300"/>
+
+      <dt>Id</dt>
+      <dd>{{ sailor.id }}</dd>
+
+      <dt>Email</dt>
+      <dd>{{ sailor.email }}</dd>
+
+      <dt>Date of birth</dt>
+      <dd>{{ sailor.dateOfBirth | date: 'dd/MM/yyyy' }}</dd>
+
+      <dt>Description</dt>
+      <dd>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</dd>
+    </dl>
+  </div>
+  
+
+  @defer (on viewport) {
+    <app-sailor-comments [sailorId]="sailor.id"></app-sailor-comments>
+  } @placeholder (minimum 5s) {
+    <p>Placeholder for comments...</p>
+  }
 } @else {
   <p>Sailor not found</p>
 }

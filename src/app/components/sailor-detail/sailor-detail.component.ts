@@ -1,12 +1,13 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
+import { DatePipe, NgOptimizedImage } from '@angular/common';
 import { Sailor } from '../../models/sailor';
 import { SailorService } from '../../services/sailor.service';
-import { SailorCardComponent } from "../sailor-card/sailor-card.component";
+import { SailorCommentsComponent } from "../sailor-comments/sailor-comments.component";
 
 @Component({
   selector: 'app-sailor-detail',
-  imports: [RouterModule, SailorCardComponent],
+  imports: [RouterModule, SailorCommentsComponent, DatePipe, NgOptimizedImage],
   templateUrl: './sailor-detail.component.html',
   styleUrl: './sailor-detail.component.css'
 })

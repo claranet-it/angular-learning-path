@@ -1,0 +1,4 @@
+<h4>Comments</h4>
+@for (sailorComment of sailorComments; track sailorComment.id) {
+  <p>{{ sailorComment.date | date: 'dd/MM/yyyy HH:mm' }} - {{ sailorComment.text }}</p>
+}
