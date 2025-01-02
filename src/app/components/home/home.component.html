@@ -1,4 +1,5 @@
 <a href="javascript:void(0);" (click)="logout()">Logout</a>
 <h1>home</h1>
-<app-sailors-list></app-sailors-list>
+<input placeholder="filter" [(ngModel)]="filter">
+<app-sailors-list [filter]="filter"></app-sailors-list>
 <app-add-sailor></app-add-sailor>

@@ -38,3 +38,8 @@ Once the server is running, open your browser and navigate to `http://localhost:
 - use of `ActivatedRoute` service
 - deferred loading with `@defer`
 - angular signal inputs: `input()` and `effect()`
+
+### Chapter 5
+
+- filter sailors
+- template driven form
