@@ -12,6 +12,7 @@
   font-weight: bold;
   margin-bottom: 15px;
   text-align: center;
+  cursor: pointer;
 }
 
 .label-value-list {

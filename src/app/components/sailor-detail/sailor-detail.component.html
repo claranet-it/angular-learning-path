@@ -1,0 +1,6 @@
+<a href="javascript:void(0);" [routerLink]="['/home']">Back</a>
+@if (sailor) {
+  <app-sailor-card [sailor]="sailor"></app-sailor-card>
+} @else {
+  <p>Sailor not found</p>
+}

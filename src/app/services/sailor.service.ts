@@ -34,4 +34,8 @@ export class SailorService {
   deleteSailor(id: number) {
     this.sailors.update((sailors) => sailors.filter((item) => item.id !== id));
   }
+
+  getSailor(id: number) {
+    return this.sailors().find((sailor) => sailor.id === id);
+  }
 }

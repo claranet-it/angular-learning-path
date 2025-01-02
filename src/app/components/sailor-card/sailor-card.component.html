@@ -1,5 +1,5 @@
 <div class="sailor-card">
-  <div class="sailor-card-title">{{ sailor.id }} - {{ sailor.name }} {{ sailor.surname }}</div>
+  <div class="sailor-card-title" [routerLink]="['/sailor', sailor.id]">{{ sailor.id }} - {{ sailor.name }} {{ sailor.surname }}</div>
   <div class="label-value-list">
     <div class="label-value-item">
       <span class="label">Email:</span>

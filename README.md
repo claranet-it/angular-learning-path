@@ -31,3 +31,8 @@ Once the server is running, open your browser and navigate to `http://localhost:
 - delete sailor
 - event emitter with `@Output()`
 - signals `update()`
+
+### Chapter 4
+
+- `sailor-detail`component
+- use of `ActivatedRoute` service
