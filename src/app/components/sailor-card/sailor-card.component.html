@@ -1,16 +1,32 @@
 <div class="sailor-card">
   <div class="sailor-card-title" [routerLink]="['/sailor', sailor.id]">{{ sailor.id }} - {{ sailor.name }} {{ sailor.surname }}</div>
-  <div class="label-value-list">
-    <div class="label-value-item">
-      <span class="label">Email:</span>
-      <span class="value">{{ sailor.email }}</span>
+  <form [formGroup]="editSailorForm" (ngSubmit)="onEditSubmit()">
+    <div class="label-value-list">
+      <div class="label-value-item">
+        <span class="label">Email:</span>
+        @if (editMode) {
+          <input type="email" formControlName="email">
+        } @else {
+          <span class="value">{{ sailor.email }}</span>
+        } 
+      </div>
+      <div class="label-value-item">
+        <span class="label">Date of birth:</span>
+        @if (editMode) {
+          <input type="date" formControlName="dateOfBirth">
+        } @else {
+          <span class="value">{{ sailor.dateOfBirth | date: 'dd/MM/yyyy' }}</span>
+        }
+      </div>
     </div>
-    <div class="label-value-item">
-      <span class="label">Date of Birth:</span>
-      <span class="value">{{ sailor.dateOfBirth | date: 'dd/MM/yyyy' }}</span>
+    <div class="sailor-card-actions">
+      @if (editMode) {
+        <button type="button" class="button-edit" (click)="editMode = false">Cancel</button>
+        <button type="submit" class="button-save" [disabled]="editSailorForm.invalid">Save</button>
+      } @else {
+        <button type="button" class="button-edit" (click)="editMode = true">Edit</button>
+        <button type="button" class="button-delete" (click)="delete.emit(sailor.id)">Delete</button>
+      }
     </div>
-  </div>
-  <div class="sailor-card-actions">
-    <button class="button-delete" (click)="delete.emit(sailor.id)">Delete</button>
-</div>
+  </form>
 </div>

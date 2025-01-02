@@ -43,3 +43,4 @@ Once the server is running, open your browser and navigate to `http://localhost:
 
 - filter sailors
 - template driven form
+- edit sailor

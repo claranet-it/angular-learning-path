@@ -31,6 +31,13 @@ export class SailorService {
     this.sailors.update((sailors) => [...sailors, newSailor]);
   }
 
+  editSailor(newSailor: Sailor) {
+    const updatedSailors = this.sailors().map((sailor) => {
+      return (newSailor.id === sailor.id) ? { ...newSailor } : sailor;
+    });
+    this.sailors.set(updatedSailors);
+  }
+
   deleteSailor(id: number) {
     this.sailors.update((sailors) => sailors.filter((item) => item.id !== id));
   }
