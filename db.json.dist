@@ -1,0 +1,35 @@
+{
+  "sailors": [
+    {
+      "id": "0419",
+      "name": "Daniele",
+      "surname": "Luconi",
+      "email": "daniele.luconi@claranet.com",
+      "dateOfBirth": "1982-11-02"
+    },
+    {
+      "id": "3e76",
+      "name": "Domenico",
+      "surname": "Cardillo",
+      "email": "domenico.cardillo@claranet.com",
+      "dateOfBirth": "1990-01-01"
+    }
+  ],
+  "comments": [
+    {
+      "id": "rh89",
+      "text": "Commento 1",
+      "date": "2023-02-01 23:59:59"
+    },
+    {
+      "id": "4245",
+      "text": "Commento 2",
+      "date": "2023-04-04 12:00:00"
+    },
+    {
+      "id": "fsd543",
+      "text": "Commento 3",
+      "date": "2023-05-017 10:30:00"
+    }
+  ]
+}

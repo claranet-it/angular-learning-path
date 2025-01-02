@@ -1,5 +1,5 @@
 export interface Sailor {
-  id: number;
+  id: string;
   name: string;
   surname: string;
   email: string;

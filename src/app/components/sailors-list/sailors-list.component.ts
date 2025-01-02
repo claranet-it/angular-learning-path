@@ -18,4 +18,8 @@ export class SailorsListComponent {
       sailor.email.toLowerCase().includes(this.lowerCaseFilter());
   }));
 
+  constructor() {
+    this.sailorService.fetchSailors();
+  }
+
 }

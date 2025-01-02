@@ -1,6 +1,6 @@
 <a href="javascript:void(0);" [routerLink]="['/home']">Back</a>
 <h1>Sailor Detail</h1>
-@if (sailor) {
+@if (sailor$ | async; as sailor) {
   <div style="height: 1000px;">
     <h2>{{ sailor.name }} {{ sailor.surname }}</h2>
     <dl>

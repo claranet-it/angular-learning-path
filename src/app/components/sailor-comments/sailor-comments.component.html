@@ -1,4 +1,6 @@
 <h4>Comments</h4>
-@for (sailorComment of sailorComments; track sailorComment.id) {
+@for (sailorComment of sailorCommentsService.sailorComments(); track sailorComment.id) {
   <p>{{ sailorComment.date | date: 'dd/MM/yyyy HH:mm' }} - {{ sailorComment.text }}</p>
+} @empty {
+  <p>No comments found</p>
 }

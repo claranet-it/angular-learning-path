@@ -10,13 +10,12 @@ import { SailorComment } from '../../models/sailor-comment';
   styleUrl: './sailor-comments.component.css'
 })
 export class SailorCommentsComponent {
-  sailorId: InputSignal<number> = input.required<number>();
+  sailorId: InputSignal<string> = input.required<string>();
   sailorCommentsService = inject(SailorCommentsService);
-  sailorComments: SailorComment[] = [];
 
   constructor() {
     effect(() => {
-      this.sailorComments = this.sailorCommentsService.getSailorComments(this.sailorId());
+      this.sailorCommentsService.fetchSailorComments(this.sailorId());
     })
   }
 }

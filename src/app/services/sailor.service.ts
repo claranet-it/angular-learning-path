@@ -1,48 +1,32 @@
-import { computed, Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { Sailor } from '../models/sailor';
-
-export const initialSailors: Sailor[] = [
-  {
-    id: 1,
-    name: 'Daniele',
-    surname: 'Luconi',
-    email: 'daniele.luconi@claranet.com',
-    dateOfBirth: '1982-11-02'
-  },
-  {
-    id: 2,
-    name: 'Domenico',
-    surname: 'Cardillo',
-    email: 'domenico.cardillo@claranet.com',
-    dateOfBirth: '1990-01-01'
-  },
-]
 
 @Injectable({
   providedIn: 'root',
 })
 export class SailorService {
-  sailors = signal<Sailor[]>(initialSailors)
-  maxId = computed(() => this.sailors().length ? Math.max(...this.sailors().map(sailor => sailor.id)) : 0);
+  sailors = signal<Sailor[]>([])
+  http = inject(HttpClient);
+
+  fetchSailors() {
+    this.http.get<Sailor[]>('http://localhost:3000/sailors').subscribe(sailors => this.sailors.set(sailors));
+  }
 
   addSailor(sailor: Omit<Sailor, 'id'>) {
-    const id = this.maxId() + 1;
-    const newSailor: Sailor = { id, ...sailor };
-    this.sailors.update((sailors) => [...sailors, newSailor]);
+    this.http.post('http://localhost:3000/sailors', sailor).subscribe(() => this.fetchSailors());
   }
 
   editSailor(newSailor: Sailor) {
-    const updatedSailors = this.sailors().map((sailor) => {
-      return (newSailor.id === sailor.id) ? { ...newSailor } : sailor;
-    });
-    this.sailors.set(updatedSailors);
+    this.http.put(`http://localhost:3000/sailors/${newSailor.id}`, newSailor).subscribe(() => this.fetchSailors());
   }
 
-  deleteSailor(id: number) {
-    this.sailors.update((sailors) => sailors.filter((item) => item.id !== id));
+  deleteSailor(id: string) {
+    this.http.delete(`http://localhost:3000/sailors/${id}`).subscribe(() => this.fetchSailors());
   }
 
-  getSailor(id: number) {
-    return this.sailors().find((sailor) => sailor.id === id);
+  getSailor(id: string): Observable<Sailor> {
+    return this.http.get<Sailor>(`http://localhost:3000/sailors/${id}`);
   }
 }
