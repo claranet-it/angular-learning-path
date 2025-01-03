@@ -1,5 +1,5 @@
 <div class="sailors-list-container">
-  @for (sailor of filteredSailors(); track sailor.id) {
+  @for (sailor of sailorService.resources(); track sailor.id) {
     <app-sailor-card [sailor]="sailor" (delete)="deleteSailor($event)"></app-sailor-card>
   } @empty {
     No Sailors found

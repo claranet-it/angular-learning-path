@@ -7,9 +7,9 @@ import { ResourceService } from './resource.service';
   providedIn: 'root',
 })
 export class SailorService extends ResourceService<Sailor> {
-  getSailors(): Observable<Sailor[]> {
+  getSailors(searchTerm?: string): Observable<Sailor[]> {
     return this.http
-      .get<Sailor[]>('http://localhost:3000/sailors')
+      .get<Sailor[]>(`http://localhost:3000/sailors${searchTerm ? `?surname=${searchTerm}` : ''}`)
       .pipe(tap(this.setResources));
   }
 

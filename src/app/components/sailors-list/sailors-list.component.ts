@@ -1,5 +1,6 @@
 import { Component, computed, inject, input } from '@angular/core';
-import { Subject, takeUntil } from 'rxjs';
+import { toObservable } from '@angular/core/rxjs-interop';
+import { debounceTime, distinctUntilChanged, Subject, switchMap, takeUntil } from 'rxjs';
 import { SailorService } from '../../services/sailor.service';
 import { SailorCardComponent } from '../sailor-card/sailor-card.component';
 
@@ -14,14 +15,14 @@ export class SailorsListComponent {
   sailorService = inject(SailorService)
   filter = input('')
   lowerCaseFilter = computed(() => this.filter().toLowerCase())
-  filteredSailors = computed(() => this.sailorService.resources().filter((sailor) => {
-    return sailor.name.toLowerCase().includes(this.lowerCaseFilter()) ||
-      sailor.surname.toLowerCase().includes(this.lowerCaseFilter()) ||
-      sailor.email.toLowerCase().includes(this.lowerCaseFilter());
-  }));
 
   constructor() {
     this.sailorService.getSailors().pipe(takeUntil(this.unsubscribe$)).subscribe();
+    toObservable(this.filter).pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap((searchTerm) => this.sailorService.getSailors(searchTerm))
+    ).subscribe();
   }
 
   deleteSailor(id: string) {
