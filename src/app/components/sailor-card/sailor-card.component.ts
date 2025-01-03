@@ -2,6 +2,7 @@ import { Component, effect, EventEmitter, inject, Input, Output } from '@angular
 import { DatePipe } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Subject, takeUntil } from 'rxjs';
 import { Sailor } from '../../models/sailor';
 import { SailorService } from '../../services/sailor.service';
 
@@ -15,6 +16,7 @@ export class SailorCardComponent {
   @Input() sailor!: Sailor;
   @Output() delete = new EventEmitter();
   sailorService = inject(SailorService);
+  unsubscribe$: Subject<boolean> = new Subject<boolean>();
 
   editMode = false;
 
@@ -36,8 +38,14 @@ export class SailorCardComponent {
       email: this.editSailorForm.get('email')?.value || '',
       dateOfBirth: this.editSailorForm.get('dateOfBirth')?.value || ''
     };
-    this.sailorService.editSailor(newSailor);
-    this.editMode = false;
+    this.sailorService.editSailor(newSailor).pipe(takeUntil(this.unsubscribe$)).subscribe(() => {
+      this.editMode = false;
+    });
+  }
+
+  ngOnDestroy() {
+    this.unsubscribe$.next(true);
+    this.unsubscribe$.unsubscribe();
   }
 
   

@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Subject, takeUntil } from 'rxjs';
 import { SailorService } from '../../services/sailor.service';
 
 @Component({
@@ -10,6 +11,7 @@ import { SailorService } from '../../services/sailor.service';
 })
 export class AddSailorComponent {
   sailorService = inject(SailorService);
+  unsubscribe$: Subject<boolean> = new Subject<boolean>();
   
   addSailorForm: FormGroup = new FormGroup({
     name: new FormControl('', Validators.required),
@@ -20,8 +22,14 @@ export class AddSailorComponent {
 
   onSubmit() {
     if (this.addSailorForm.valid) {
-      this.sailorService.addSailor(this.addSailorForm.value);
-      this.addSailorForm.reset();
+      this.sailorService.createSailor(this.addSailorForm.value).pipe(takeUntil(this.unsubscribe$)).subscribe(() => {
+        this.addSailorForm.reset();
+      });
     }
+  }
+
+  ngOnDestroy() {
+    this.unsubscribe$.next(true);
+    this.unsubscribe$.unsubscribe();
   }
 }

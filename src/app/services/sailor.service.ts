@@ -1,29 +1,34 @@
-import { inject, Injectable, signal } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Observable, tap } from 'rxjs';
 import { Sailor } from '../models/sailor';
+import { ResourceService } from './resource.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class SailorService {
-  sailors = signal<Sailor[]>([])
-  http = inject(HttpClient);
-
-  fetchSailors() {
-    this.http.get<Sailor[]>('http://localhost:3000/sailors').subscribe(sailors => this.sailors.set(sailors));
+export class SailorService extends ResourceService<Sailor> {
+  getSailors(): Observable<Sailor[]> {
+    return this.http
+      .get<Sailor[]>('http://localhost:3000/sailors')
+      .pipe(tap(this.setResources));
   }
 
-  addSailor(sailor: Omit<Sailor, 'id'>) {
-    this.http.post('http://localhost:3000/sailors', sailor).subscribe(() => this.fetchSailors());
+  createSailor(sailor: Sailor): Observable<Sailor> {
+    return this.http
+      .post<Sailor>('http://localhost:3000/sailors', sailor)
+      .pipe(tap(this.upsertResource));
   }
 
-  editSailor(newSailor: Sailor) {
-    this.http.put(`http://localhost:3000/sailors/${newSailor.id}`, newSailor).subscribe(() => this.fetchSailors());
+  editSailor(sailor: Sailor): Observable<Sailor> {
+    return this.http
+      .put<Sailor>(`http://localhost:3000/sailors/${sailor.id}`, sailor)
+      .pipe(tap(this.upsertResource));
   }
 
-  deleteSailor(id: string) {
-    this.http.delete(`http://localhost:3000/sailors/${id}`).subscribe(() => this.fetchSailors());
+  deleteSailor(id: string): Observable<Sailor> {
+    return this.http
+      .delete<Sailor>(`http://localhost:3000/sailors/${id}`)
+      .pipe(tap(() => this.removeResource(id)));
   }
 
   getSailor(id: string): Observable<Sailor> {
