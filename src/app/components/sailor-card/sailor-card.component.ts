@@ -27,8 +27,8 @@ export class SailorCardComponent {
 
   constructor() {
     effect(() => {
-        this.editSailorForm.get('email')?.setValue(this.sailor.email);
-        this.editSailorForm.get('dateOfBirth')?.setValue(this.sailor.dateOfBirth);
+      this.editSailorForm.get('email')?.setValue(this.sailor.email);
+      this.editSailorForm.get('dateOfBirth')?.setValue(this.sailor.dateOfBirth);
     })
   }
 
