@@ -59,3 +59,7 @@ Once the server is running, open your browser and navigate to `http://localhost:
 - reusable `resource.service.ts` to manage any resource with signal
 - `rxjs` for crud actions
 - server side filter with `toObservable`
+
+### Chapter 7
+
+- testing
